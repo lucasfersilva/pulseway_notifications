@@ -70,4 +70,4 @@ def delete_notification():
     # Redirect back to the original page
     return redirect(request.referrer)
 
-app.run("0.0.0.0",8130,True)
+app.run("0.0.0.0",8130,False)
