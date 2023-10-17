@@ -19,8 +19,6 @@ def get_api_results():
             if i['priority'] == 'low' or 'normal':
                 update.append(i)
                 print(i)
-        #    elif i['priority'] == 'elevated' or 'critical':
-        #        critical.append(i)
 
         return update
     except Exception as e:
@@ -35,9 +33,11 @@ def get_critical_results():
         newdict = result['data']
         for i in newdict:
 
-            if i['priority'] == 'elevated' or 'critical':
+            if i['priority'] == 'elevated':
                 critical.append(i)
                 print(i)
+            elif i['priority'] == 'critical':
+                critical.append(i)
 
         return critical
     except Exception as e:
@@ -52,7 +52,7 @@ def notifications():
 
 @app.route('/critical')
 def critical_notifications():
-    return render_template('critical.html', update=get_critical_results())
+    return render_template('critical.html', critical=get_critical_results())
 
 @app.route('/remove_item', methods=['POST'])
 def delete_notification():
@@ -68,4 +68,4 @@ def delete_notification():
     # Redirect back to the original page
     return redirect(request.referrer)
 
-app.run("0.0.0.0",8130,True)
+app.run("0.0.0.0",8130,False)
