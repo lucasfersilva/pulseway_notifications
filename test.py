@@ -16,10 +16,10 @@ try:
     for i in newdict:
 
         if i['priority'] == 'low' or 'normal':
-            update.append(i['message'])
+            update.append(i)
             print(i)
         elif i['priority'] == 'elevated' or 'critical':
-            critical.append(i['message'])
+            critical.append(i)
 
 except Exception as e:
     print('GetNotifications raised an exception.')
@@ -39,6 +39,7 @@ def delete_notification():
     try:
         api = slumber.API(ENDPOINT, auth=(config.USERNAME, config.PASSWORD))
         notification_id = request.form['notification_id']
+        print(notification_id)
         result = api.notifications(notification_id).delete()
         print(result)
     except Exception as e:
