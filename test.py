@@ -19,6 +19,8 @@ def get_api_results():
             if i['priority'] == 'low' or 'normal':
                 update.append(i)
                 print(i)
+        #    elif i['priority'] == 'elevated' or 'critical':
+        #        critical.append(i)
 
         return update
     except Exception as e:
@@ -68,4 +70,4 @@ def delete_notification():
     # Redirect back to the original page
     return redirect(request.referrer)
 
-app.run("0.0.0.0",8130,False)
+app.run("0.0.0.0",8130,True)
